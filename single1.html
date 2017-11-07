@@ -132,29 +132,33 @@
                                 <div class="post-info">
                                     <span>November 23, 2016 / by <a href="#" target="_blank">Muhammad Ahad Ul Alam</a></span>
                                    </div>
-                                   <!-- Post Detail End -->
-                                    
-                                    
-                                    Performance Testing:
+                                   <pre class="western">Performance Testing:
 
- technical & formal evaluation for responsiveness, speed, scalability and stability characteristics.
+
+ technical &amp; formal evaluation for responsiveness, speed, scalability and stability characteristics.
 (spike,endurance,load,stress)
+
 
 Load Testing:
 
+
 The main goal of load testing is to identify the upper limit of the system in terms of database, hardware and network etc.
 Helps to determine:
-Throughput
-Peak Production Load
-Load balancing requirements
+* Throughput
+* Peak Production Load
+* Load balancing requirements
 Stress Testing:
+
 
  It is done to evaluate the application's behaviour beyond normal or peak load conditions. 
 It is basically testing the functionality of the application under high loads.
 “Fatigue test”.
 
 
+
+
 Important metrics:
+
 
 Throughput
 Response time
@@ -166,88 +170,123 @@ Benchmarking
 
 
 
+
+
+
+
+
+
 performance test process:
 
-planning test      ->      creating scenario   ->   creating scripts ->   running the scenario -> 
-                                                
 
-monitoring the scenario -> analyze test results
+planning test      -&gt;      creating scenario   -&gt;   creating scripts -&gt;   running the scenario -&gt; 
+                                                                                                
+
+
+monitoring the scenario -&gt; analyze test results
+
+
+
 
 
 
 Planning test:
+
 
 Which tool can be used for load testing purpose? [options: apache benchmeter,loadrunner, apache jmeter]
 How many machines can be used?
 Machines configurations?
 How to automate something of the whole processes?(if possible)
 
+
 Backend: 38.108.92.206
 cache :38.127.68.36
+
 
 Development purpose :(as 503 from 38.108.92.206)
 Backend:38.127.68.37
 Cache: 38.127.68.36
 
+
 Creating scenarios:
+
 
 Enumeration of test cases:
 Varying(1/0) some metrics that we fixed earlier, we enumerated some test cases.
 Metrics are
 1)protocol
-    HTTP
-    HTTPS
+        HTTP
+        HTTPS
 2)URL
-    Same
-    Different
+        Same
+        Different
 3)Server
-    Backend
-    Cache
-        Miss
-        Hit
+        Backend
+        Cache
+                Miss
+                Hit
 4)Load
-    Without
-    With
+        Without
+        With
 Should be total 24 cases.
 But same url cache miss not possible that’s why total 20 test cases.
+
 
 A shell script is written by which we can determine some metrics say download time,connect time etc.
 We run this to hit same url either in backend or cache depending on test cases.
 
 
+
+
 We use total 10 machines for this purpose
+
 
 We had two options:
 Either to follow master/slave or run independently jmeter in every machines. Following latter one, it can be easier for us to have machine independent data.
 So we followed second one.
 
 
+
+
 We used ansible to transfer necessary file (TC’s etc.) to every machines and running jmeter script and bash script in all machines and save the output files to specified folder.
+
+
 
 
 Then another bash script is written to move all output files to central one and convert them to a csv file.,So that it can be easier to analyze the test results both test case based and machines based.
 
 
 
+
+
+
 Creating Scripts:
-Scripts to extract all url
-Scripts to split url’s to 400 files (diff. Url case)
-Bash script that extract some metrics from every url request
-Jmeter scripts for all test cases
-Scripts to move all files to central one and generate a csv file from provided datas.
+1. Scripts to extract all url
+2. Scripts to split url’s to 400 files (diff. Url case)
+3. Bash script that extract some metrics from every url request
+4. Jmeter scripts for all test cases
+5. Scripts to move all files to central one and generate a csv file from provided datas.
+
+
 
 
 Running the scenario:
+
 
 It’s a boring task !!!
 Because if we fix 30min/tc then it takes 10hr to finish all testcase
 We run this scenario 4 times.
 
+
 After first run we decided to change some parameters regarding varnish 
 
 
 
+
+
+
 Monitoring the scenario:
+
 
 We monitored the cpu usage of cache server while running test cases in cache server. We observed that all 48 cores were of 70-80% of it’s memory in use.
 After running 1st round we observed that some parameters of both varnish and machine’s network related must be “Tuned”.
@@ -255,33 +294,44 @@ And here comes the concept of tuning
 
 
 
+
+
+
 Tuning:
-Baseline -> Collect data -> analyze results -> configure -> test and measure
+Baseline -&gt; Collect data -&gt; analyze results -&gt; configure -&gt; test and measure
+
 
 This process repeated multiple time
 
 
-The parameters related to varnish that may have impact on performance we assumed---->
+
+
+The parameters related to varnish that may have impact on performance we assumed----&gt;
+
 
 Thread pools (most practitioner suggests to keep it’s value exactly 2)
 Thread_pool_minimum( 400 this time total 800 threads created initially)
 Thread_pool_maximum(5000)
-thread_pull_stack(64k) ->         
+thread_pull_stack(64k) -&gt;         
 maximum total memory required for worker thread stacks is in the order of size =
                                            thread_pools x thread_pool_max x thread_pool_stack.
 Should be kept minimum in order to reduce memory usage. But not very low to occur stack overflow.
 
-Thread_queue_limit(100) ->  This sets the number of requests we will queue, waiting for an
+
+Thread_queue_limit(100) -&gt;  This sets the number of requests we will queue, waiting for an
         available thread. 
 
-Workspace_thread (8k) -> bytes of aux. ws/threadhaving too little space occurs more system calls   
-Workspace_session(4k) -> alloc. Size for all session structure and workspace
-Listen_depth (4096) ->  (not very much effect actually)
-Pipe_timeout(30 sec) -> Idle timeout per session
+
+Workspace_thread (8k) -&gt; bytes of aux. ws/threadhaving too little space occurs more system calls   
+Workspace_session(4k) -&gt; alloc. Size for all session structure and workspace
+Listen_depth (4096) -&gt;  (not very much effect actually)
+Pipe_timeout(30 sec) -&gt; Idle timeout per session
 Thread_pull_reserved(20)
-Timeout_idle(5s) -> idle timeout for per connection
+Timeout_idle(5s) -&gt; idle timeout for per connection
 Send_timeout
-Lru_interval(20s) -> Grace period before object moves on LRU list.
+Lru_interval(20s) -&gt; Grace period before object moves on LRU list.
+
+
 
 
 Network parameter tuning:
@@ -292,14 +342,23 @@ Network parameter tuning:
 
 
 
+
+
+
+
+
+
+
 Analyze Test Results:
 
-              
+
+                          
 We analyze  test cases and here are our findings.
-In every machines TC0’s(backend same without) download time is greater than TC2’s download time(as expected). Furthermore,the condition holds upto 6-7 thread per machine
-In every machines TC1’s(backend same without) download time is less than TC3’s download time(as expected).even cache’s download time be 5-6 times of backends .
+1. In every machines TC0’s(backend same without) download time is greater than TC2’s download time(as expected). Furthermore,the condition holds upto 6-7 thread per machine
+2. In every machines TC1’s(backend same without) download time is less than TC3’s download time(as expected).even cache’s download time be 5-6 times of backends .
 So  question arises,
  Do varnish restrict concurrent request at a time for same object?
+
 
 3)From TC7 and TC9 we get expected results
 4)From TC7 and TC11 we get expected results
@@ -307,9 +366,35 @@ So  question arises,
 
 
 
+
+
+
 Future work:
 To automate the system so that we can use server as many as we want and run all test cases using single command for a specific time reserved for each test case.
 A UI if possible.
+ 
+
+
+
+
+
+
+    
+                
+
+
+
+
+
+
+
+
+
+:</pre>
+                                   <!-- Post Detail End -->
+                                    
+                                    
+                                    
  
 
 
@@ -322,7 +407,7 @@ A UI if possible.
 
 
 
-:
+
 
 
 
