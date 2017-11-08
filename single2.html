@@ -140,7 +140,15 @@
 							</div>
 		<script src="js/reveal.js"></script>
 		<script>
-			Reveal.initialize();
+			Reveal.initialize(
+				{
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
 		</script>
 
 		<!-- <div class="about-author margin-top-70 margin-bottom-50">
