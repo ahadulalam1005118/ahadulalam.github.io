@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+"http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="0 0 1099 824" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<clipPath id="c0_32"><path d="M0,825L0,0L1100,0l0,825Z" /></clipPath>
+<style type="text/css"><![CDATA[
+.g1_32{
+fill: #FFFFFF;
+}
+.g2_32{
+fill: none;
+stroke: #CC9900;
+stroke-width: 2.291514;
+stroke-linecap: butt;
+stroke-linejoin: miter;
+stroke-miterlimit: 7;
+}
+.g3_32{
+fill: none;
+stroke: #CC9900;
+stroke-width: 2.291514;
+stroke-linecap: square;
+stroke-linejoin: miter;
+stroke-miterlimit: 7;
+}
+.g4_32{
+fill: none;
+stroke: #000000;
+stroke-width: 1.2000542;
+stroke-linecap: round;
+stroke-linejoin: miter;
+stroke-miterlimit: 1;
+}
+.g5_32{
+fill: none;
+stroke: #000000;
+stroke-width: 0.9978835;
+stroke-linecap: round;
+stroke-linejoin: miter;
+stroke-miterlimit: 1;
+}
+.g6_32{
+fill: none;
+stroke: #000000;
+stroke-width: 1.0311278;
+stroke-linecap: round;
+stroke-linejoin: miter;
+stroke-miterlimit: 1;
+}
+]]></style>
+</defs>
+<g clip-path="url(#c0_32)">
+<path fill-rule="evenodd" d="M0,0.1l1100,0l0,825L0,825.1L0,0.1Z" class="g1_32" />
+<path fill-rule="evenodd" d="M0,0.1l1100,0l0,825L0,825.1L0,0.1Z" class="g1_32" />
+</g>
+<path d="M45.8,100.9l0,-73.3l990,0" class="g2_32" />
+<path d="M45.8,27.6l0,0Z" class="g2_32" />
+<path d="M1035.8,100.9l0,0Z" class="g2_32" />
+<path d="M55,742.6l990,0.2" class="g3_32" />
+<image preserveAspectRatio="none" x="546" y="23" width="532" height="385" xlink:href="img/1.png" />
+<image preserveAspectRatio="none" x="702" y="424" width="372" height="142" xlink:href="img/2.png" />
+<image preserveAspectRatio="none" x="515" y="588" width="568" height="149" xlink:href="img/3.png" />
+<path d="M171.6,145.4l28.4,0" class="g4_32" />
+<path d="M278.2,145.4l28.4,0" class="g4_32" />
+<path d="M334.3,145.4l28.4,0" class="g4_32" />
+<path d="M440.9,145.4l28.4,0" class="g4_32" />
+<path d="M215.9,250.5l23.4,0" class="g5_32" />
+<path d="M395.2,250.5l23.4,0" class="g5_32" />
+<path d="M214.8,317.7l23.4,0" class="g5_32" />
+<path d="M291,317.7l23.4,0" class="g5_32" />
+<path d="M172,443.5l24.5,0" class="g6_32" />
+<path d="M359.8,443.5l24.4,0" class="g6_32" />
+<path d="M550.3,443.5l24.5,0" class="g6_32" />
+<path d="M170,516.3l24.5,0" class="g6_32" />
+<path d="M291.5,516.3l24.4,0" class="g6_32" />
+<path d="M413.1,516.3l24.5,0" class="g6_32" />
+</svg>
